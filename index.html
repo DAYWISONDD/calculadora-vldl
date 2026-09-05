@@ -4,51 +4,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="Calculadora" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora VLDL</title>
+    <title>Equação de Martin</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/jpeg" href="IMAGE/logo_transparente.png">
 </head>
 
 <body>
 
     <header>
-        <nav>
-            <li><img src="" alt=""></li>
-            <li>Dúvidas</li>
-
-        </nav>
-  
-    <h1>Calculadora VLDL</h1>
-    <section class="calculadora">
-        <div> Colesterol Total -----
-            <input type="number" id="colesterolTotal">
-            <span> mg/dL</span>
-        </div>
-        <div>HDL --------------
-            <input type="number" id="hdl">
-            <span> mg/dL</span>
-        </div>
-        <div>Triglicerídeos -------
-            <input type="number" id="trig">
-            <span> mg/dL</span>
+        <div class="linha"></div>
+        <div class="container">
+            <div class="logo">
+                <img src="image/logo_transparente.png" alt="">
+            </div>
+            <div class="dashboard"><span>Equação de Martin</span></div>
+            <div class="contato"><span><a href="mailto:brunodaywison4@gmail.com">Contato</a></span></div>
         </div>
 
-        <button onclick="calcular()">Calcular</button>
-    </section>
-    <section class="resultado">
-        <div id="resultNonHDL">
-            Resultado Não-HDL: <span id="nonHDLValue"></span>
+    </header>
+
+    <div class="hero">
+        <img class="fundo" src="image/fundo.jpg" alt="">
+
+        <div class="calculadora">
+            <div> Colesterol Total:
+                <input type="number" id="colesterolTotal">
+                <span> mg/dL</span>
+                <div class="referencia">
+                    <span>Referência: ≤190 mg/dL</span>
+                </div>
+                <div class="classificacao">
+                    Classificação: <span id="classificacao-col"></span>
+                </div>
+            </div>
         </div>
-        <div id="resultFator">
-            Fator de Risco: <span id="fatorValue"></span>
+
+        <div class="calculadora">
+            <div> Colesterol HDL:
+                <input type="number" id="hdl">
+                <span> mg/dL</span>
+                <div class="referencia">
+                    <span>Referência: ≥40 mg/dL</span>
+                </div>
+                <div class="classificacao">
+                    Classificação: <span id="classificacao-hdl"></span>
+
+                </div>
+            </div>
         </div>
-        <div id="resultLDL">
-            Resultado LDL: <span id="ldlValue"></span>
+        <div class="calculadora">
+            <div>Triglicerídeos:
+                <input type="number" id="trig">
+                <span> mg/dL</span>
+                <div class="referencia">
+                    <span>Referência: ≤150 mg/dL </span>
+                </div>
+                <div class="classificacao">
+                    Classificação: <span id="classificacao-tri"></span>
+                </div>
+            </div>
+
         </div>
-        <div id="resultVLDL">
-            Resultado VLDL: <span id="vldlValue"></span>
+
+        <div class="resultado">
+            <div id="resultNonHDL">
+                Resultado Não-HDL: <span id="nonHDLValue"></span>
+            </div>
+            <div class="referencia">
+                <span>Referência: ≤130 mg/dL </span>
+            </div>
+            <div class="classificacao">
+                Classificação: <span id="classificacao-tri"></span>
+            </div>
         </div>
-    </section>
+    </div>
+    <div class="hero">
+        <div class="resultado">
+            <div id="resultLDL">
+                Resultado LDL: <span id="ldlValue"></span>
+            </div>
+            <div class="referencia">
+                <span>Referência: ≤130 mg/dL </span>
+            </div>
+            <div class="classificacao">
+                Classificação: <span id="classificacao-ldl"></span>
+            </div>
+
+        </div>
+        <div class="resultado">
+            <div id="resultVLDL">
+                Resultado VLDL: <span id="vldlValue"></span>
+            </div>
+            <div class="referencia">
+                <span>Referência: ≤30 mg/dL </span>
+            </div>
+            <div class="classificacao">
+                Classificação: <span id="classificacao-vldl"></span>
+            </div>
+        </div>
+        <div class="resultado">
+            <div id="resultFator">
+                Fator de Risco: <span id="fatorValue"></span>
+            </div>
+
+        </div>
+    </div>
+<div class="button">
+    <button onclick="calcular()">Calcular</button>
+</div>
+   
     <h1>Fatores baseados em triglicerídeos e colesterol não-HDL</h1>
+    <div class="linha"></div>
+    <p>A tabela utilizada na calculadora é baseada no método de Martin/Hopkins, uma alternativa à fórmula de Friedewald
+        para estimar o colesterol LDL. <br>
+
+        Na fórmula tradicional de Friedewald, o VLDL é calculado dividindo os triglicerídeos por um valor fixo (5), o
+        que gera erros maiores em pacientes com triglicerídeos elevados. O método de Martin resolve isso substituindo
+        esse valor fixo por um fator ajustável, que varia de acordo com a combinação entre a faixa de triglicerídeos e a
+        faixa de colesterol não-HDL do paciente. <br>
+
+        A tabela usada neste projeto tem 180 combinações possíveis (linhas de triglicerídeos x colunas de não-HDL), com
+        o fator correto para cada faixa. Esse fator é usado para calcular o VLDL (triglicerídeos dividido pelo fator), e
+        o LDL é obtido subtraindo esse VLDL do colesterol não-HDL.</p>
     <section class="table">
         <table>
             <tr>
@@ -326,9 +403,17 @@
                 <td> 6.7 </td>
             </tr>
         </table>
+        <div class="linha"></div>
+        <p> Referência: Martin SS, Blaha MJ, Elshazly MB, et al. "Comparison of a novel method vs the Friedewald
+            equation for estimating low-density lipoprotein cholesterol levels from the standard lipid profile." JAMA,
+            2013.</p>
+
     </section>
-
-
+    <footer>
+        <p>Daywison Santos</p>
+        <p>Biomédico — CRBM 6500</p>
+        <p>&copy; 2026 Calculadora VLDL. Todos os direitos reservados.</p>
+    </footer>
     <script src="script.js"></script>
 
 </body>
