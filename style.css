@@ -1,33 +1,16 @@
+
+
 * {
     margin: 0;
     padding: 0;
-    @import url('https://fonts.googleapis.com/css2?family=Caacupe+One&display=swap');
+    box-sizing: border-box;
 }
 
 body {
-
-    background-color: #0c0c0c;
-    font-family: 'Caacupe One', cursive;
-
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-.linha {
-    width: 100px;
-    height: 30px;
-}
-
-.logo img {
-    width: 100px;
-}
-
-.hero {
-    position: relative;
-    min-height: 100px;
-    overflow: hidden;
-    top: 20px;
-    display: flex;
-}
-
+/* Imagem de fundo fixa, atrás de tudo */
 .fundo {
     position: fixed;
     top: 0;
@@ -38,8 +21,11 @@ body {
     z-index: -1;
 }
 
-.container {
+.logo img {
+    width: 100px;
+}
 
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,15 +33,18 @@ body {
     color: #fff;
     background-color: #1b215c69;
     width: 700px;
-    margin: 0 auto;
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 12px 0;
     border-radius: 10px;
-    box-shadow: 0px 0px 20px #000;
-    font-size: 30px;
-    color: #fff;
+    font-size: 15px;
     font-weight: bold;
     border-bottom: 2px solid #fff;
     box-shadow: 0px 0px 20px #0184b8;
+}
 
+.titulo span{
+    font-size: 24px;
 }
 
 .contato {
@@ -67,10 +56,13 @@ body {
     justify-content: center;
     display: flex;
     border-bottom: 2px solid #fff;
+    padding: 8px 0;
+    font-size: 24px;
 }
-.contato a{
-    list-style: none;
+
+.contato a {
     color: #fff;
+    text-decoration: none;
 }
 
 h1 {
@@ -78,56 +70,77 @@ h1 {
     color: #fff;
     font-size: 30px;
     margin-top: 50px;
+    padding: 12px;
     border-bottom: 2px solid #fff;
     border-radius: 5px;
-    border-color: #fff;
     background-color: #1b225c;
 }
+h3 {
+    text-align: center;
+    color: #feffff;
+    font-size: 30px;
+     margin: 50px auto 0;
+    padding: 12px;
+    background-color: #1b225c;
+    max-width: fit-content;
+    border-bottom: 2px solid #fff;
+    border-radius: 5px;
+    
+}
 
-.calculadora {
+/* Grid responsivo dos cards de entrada e resultado */
+.grid-resultados {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1500px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+.calculadora,
+.resultado {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    gap: 16px;
-    width: 400px;
-    height: 100px;
+    gap: 12px;
     padding: 24px;
     background-color: #1b215cbe;
-    margin: 100px auto;
     border-radius: 10px;
     box-shadow: 0px 0px 20px #0184b8;
     font-size: 25px;
     color: #fff;
     font-weight: bold;
     border-bottom: 2px solid #fff;
+    text-align: left;
 }
 
-.calculadora:hover {
+.calculadora:hover,
+.resultado:hover {
     background-color: #083570;
-    color: #fff;
-    font-weight: bold;
-
 }
-
 
 input {
     width: 100px;
     height: 30px;
     border-radius: 5px;
     border: none;
-    margin-top: 20px;
+    margin-top: 12px;
     text-align: center;
     border-bottom: 4px solid #e00901;
     font-size: 20px;
     font-weight: bold;
-    
 }
-.referencia, .classificacao{
-    font-size: 15px;
-   
+
+.referencia,
+.classificacao {
+    font-size: 20px;
+    gap: 5px;
+    text-align: justify;
 }
-.button{
+
+/* Botão calcular */
+.button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -140,112 +153,136 @@ button {
     color: #fff;
     border: none;
     border-radius: 5px;
-    margin-top: 30px;
     cursor: pointer;
     font-weight: bold;
-    font-size: 40px;
+    font-size: 28px;
     border-bottom: 2px solid #fff;
     box-shadow: 0px 0px 20px #0184b8;
     background-color: #1b215c69;
-    
 }
 
 button:hover {
     background-color: #d60404;
-    color: #fff;
-    font-weight: bold;
-
+}
+/*No jav script*/
+.adequado {
+    color: green;
 }
 
-
-
-.resultado {
-  display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    width: 410px;
-    height: 100px;
-    padding: 24px;
-    background-color: #1b215cbe;
-    margin: 100px auto;
-    border-radius: 10px;
-    box-shadow: 0px 0px 20px #0184b8;
-    font-size: 25px;
-    color: #fff;
-    font-weight: bold;
-    border-bottom: 2px solid #fff;
+.elevado {
+    color: red;
 }
 
-.resultado:hover {
-    background-color: #083570;
-    color: #fff;
-    font-weight: bold;
-
+.baixo {
+    color: orange;
 }
-p{
+
+/* Texto explicativo */
+main {
+    padding-bottom: 20px;
+}
+
+p {
     text-align: justify;
     color: #fff;
-    font-size: 22px;
+    font-size: 20px;
+    max-width: 900px;
+    margin: 20px auto;
+    line-height: 1.5;
 }
 
-p:hover {
-    background-color: #083570;
-    color: #fff;
-    
-}
-
+/* Tabela de fatores */
 .table {
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 table {
-    width: 600px;
+    width: 90%;
+    max-width: 800px;
     border-collapse: collapse;
     margin-top: 20px;
     color: #fff;
     border: 1px solid #fff;
     text-align: center;
-
+    font-size: 22px;
 
 }
 
 table,
 th,
 td {
-    border: 1px solid rgb(252, 252, 252);
-    /* Define a espessura, o estilo e a cor da borda */
+    border: 1px solid #fff;
     padding: 8px;
 }
 
 td:hover {
     background-color: #083570;
-    color: #fff;
     font-weight: bold;
 }
 
+/* Rodapé */
 footer {
     text-align: center;
     padding: 20px 14px;
-   
     color: #fff;
     font-size: 13px;
     margin-top: 20px;
-    justify-content: center;
-    align-items: center;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border-bottom: 2px solid #fff;
     box-shadow: 0px 0px 20px #0184b8;
     background-color: #1b215c69;
 }
 
 footer p {
-    margin: 4px 0;
+    margin: 2px 0;
+}
+.desc{
+    text-align: justify;
+    color: #fff;
+    font-size: 25px;
+    max-width: 900px;
+    margin: 20px auto;
+    line-height: 1.5;
+    
 }
 
-/*# dashboard */
+.desc:hover{
+    background-color: #002350;
+ 
+}
+
+.descfor{
+    font-size: 22px;
+    color: #002350;
+    font-weight: bold;
+    gap: 50px;
+    background-color: #fff;
+    max-width: fit-content;
+}
+
+
+
+
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px 0;
+    }
+    .grid-resultados {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+}

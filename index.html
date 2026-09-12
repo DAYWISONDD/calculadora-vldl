@@ -3,33 +3,34 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="Calculadora" content="width=device-width, initial-scale=1.0">
-    <title>Equação de Martin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora VLDL/LDL</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/jpeg" href="IMAGE/logo_transparente.png">
+    <link rel="icon" type="image/png" href="image/logo_transparente.png">
 </head>
 
 <body>
 
     <header>
-        <div class="linha"></div>
         <div class="container">
             <div class="logo">
-                <img src="image/logo_transparente.png" alt="">
+                <img src="image/logo_transparente.png" alt="Logo">
             </div>
-            <div class="dashboard"><span>Equação de Martin</span></div>
+            <div class="titulo"><span class="titulo">Calculadora VLDL/LDL</span></div>
             <div class="contato"><span><a href="mailto:brunodaywison4@gmail.com">Contato</a></span></div>
         </div>
-
     </header>
 
-    <div class="hero">
-        <img class="fundo" src="image/fundo.jpg" alt="">
+    <img class="fundo" src="image/fundo.jpg" alt="">
 
-        <div class="calculadora">
-            <div> Colesterol Total:
-                <input type="number" id="colesterolTotal">
-                <span> mg/dL</span>
+    <main>
+        <div class="grid-resultados">
+
+            <div class="calculadora">
+                <div>Colesterol Total:
+                    <input type="number" id="colesterolTotal">
+                    <span> mg/dL</span>
+                </div>
                 <div class="referencia">
                     <span>Referência: ≤190 mg/dL</span>
                 </div>
@@ -37,383 +38,421 @@
                     Classificação: <span id="classificacao-col"></span>
                 </div>
             </div>
-        </div>
 
-        <div class="calculadora">
-            <div> Colesterol HDL:
-                <input type="number" id="hdl">
-                <span> mg/dL</span>
+            <div class="calculadora">
+                <div>Colesterol HDL:
+                    <input type="number" id="hdl">
+                    <span> mg/dL</span>
+                </div>
                 <div class="referencia">
-                    <span>Referência: ≥40 mg/dL</span>
+                    <span> Referência:  ≥ 40 mg/dL</span>
                 </div>
                 <div class="classificacao">
                     Classificação: <span id="classificacao-hdl"></span>
-
                 </div>
             </div>
-        </div>
-        <div class="calculadora">
-            <div>Triglicerídeos:
-                <input type="number" id="trig">
-                <span> mg/dL</span>
+
+            <div class="calculadora">
+                <div>Triglicerídeos:
+                    <input type="number" id="trig">
+                    <span> mg/dL</span>
+                </div>
                 <div class="referencia">
-                    <span>Referência: ≤150 mg/dL </span>
+                    <span>Referência: ≤150 mg/dL</span><br>
                 </div>
                 <div class="classificacao">
                     Classificação: <span id="classificacao-tri"></span>
                 </div>
             </div>
 
-        </div>
+            <div class="resultado">
+                <div id="resultNonHDL">
+                    Resultado Não-HDL: <span id="nonHDLValue"></span>
+                </div>
+                <div class="referencia">
+                    <span>Referência: Meta individualizada conforme risco cardiovascular</span>
+                </div>
 
-        <div class="resultado">
-            <div id="resultNonHDL">
-                Resultado Não-HDL: <span id="nonHDLValue"></span>
-            </div>
-            <div class="referencia">
-                <span>Referência: ≤130 mg/dL </span>
-            </div>
-            <div class="classificacao">
-                Classificação: <span id="classificacao-tri"></span>
-            </div>
-        </div>
-    </div>
-    <div class="hero">
-        <div class="resultado">
-            <div id="resultLDL">
-                Resultado LDL: <span id="ldlValue"></span>
-            </div>
-            <div class="referencia">
-                <span>Referência: ≤130 mg/dL </span>
-            </div>
-            <div class="classificacao">
-                Classificação: <span id="classificacao-ldl"></span>
             </div>
 
-        </div>
-        <div class="resultado">
-            <div id="resultVLDL">
-                Resultado VLDL: <span id="vldlValue"></span>
+            <div class="resultado">
+                <div id="resultLDL">
+                    Resultado LDL: <span id="ldlValue"></span>
+                </div>
+                <div class="referencia">
+                    <span>Referência: Meta individualizada conforme risco cardiovascular</span>
+                </div>
+
             </div>
-            <div class="referencia">
-                <span>Referência: ≤30 mg/dL </span>
+
+            <div class="resultado">
+                <div id="resultVLDL">
+                    Resultado VLDL: <span id="vldlValue"></span>
+                </div>
+
             </div>
-            <div class="classificacao">
-                Classificação: <span id="classificacao-vldl"></span>
-            </div>
-        </div>
-        <div class="resultado">
-            <div id="resultFator">
-                Fator de Risco: <span id="fatorValue"></span>
+
+            <div class="resultado">
+                <div id="resultFator">
+                    Fator: <span id="fatorValue"></span>
+                </div>
             </div>
 
         </div>
-    </div>
-<div class="button">
-    <button onclick="calcular()">Calcular</button>
-</div>
-   
-    <h1>Fatores baseados em triglicerídeos e colesterol não-HDL</h1>
-    <div class="linha"></div>
-    <p>A tabela utilizada na calculadora é baseada no método de Martin/Hopkins, uma alternativa à fórmula de Friedewald
-        para estimar o colesterol LDL. <br>
 
-        Na fórmula tradicional de Friedewald, o VLDL é calculado dividindo os triglicerídeos por um valor fixo (5), o
-        que gera erros maiores em pacientes com triglicerídeos elevados. O método de Martin resolve isso substituindo
-        esse valor fixo por um fator ajustável, que varia de acordo com a combinação entre a faixa de triglicerídeos e a
-        faixa de colesterol não-HDL do paciente. <br>
+        <div class="button">
+            <button onclick="calcular()">Calcular</button>
+        </div>
 
-        A tabela usada neste projeto tem 180 combinações possíveis (linhas de triglicerídeos x colunas de não-HDL), com
-        o fator correto para cada faixa. Esse fator é usado para calcular o VLDL (triglicerídeos dividido pelo fator), e
-        o LDL é obtido subtraindo esse VLDL do colesterol não-HDL.</p>
-    <section class="table">
-        <table>
-            <tr>
-                <td rowspan="2">Triglicerídeos</td>
-                <td colspan="6">Colesterol Não-HDL em mg/dL</td>
-            </tr>
-            <tr>
-                <td> ≤100 </td>
-                <td> 100-129 </td>
-                <td> 130-159 </td>
-                <td> 160-189 </td>
-                <td> 190-219 </td>
-                <td> ≥220 </td>
-            </tr>
-
-            <tr class="7-49">
-                <td> 7-49 </td>
-                <td> 3.5 </td>
-                <td> 3.4 </td>
-                <td> 3.3 </td>
-                <td> 3.3 </td>
-                <td> 3.2 </td>
-                <td> 3.1 </td>
-            </tr>
-            <tr class="50-56">
-                <td> 50-56 </td>
-                <td> 4.0 </td>
-                <td> 3.9 </td>
-                <td> 3.7 </td>
-                <td> 3.6 </td>
-                <td> 3.6 </td>
-                <td> 3.4 </td>
-            </tr>
-            <tr class="57-61">
-                <td> 57-61 </td>
-                <td> 4.3 </td>
-                <td> 4.1 </td>
-                <td> 4.0 </td>
-                <td> 3.9 </td>
-                <td> 3.8 </td>
-                <td> 3.6 </td>
-            </tr>
-            <tr class="62-66">
-                <td> 62-66 </td>
-                <td> 4.5 </td>
-                <td> 4.3 </td>
-                <td> 4.1 </td>
-                <td> 4.0 </td>
-                <td> 3.9 </td>
-                <td> 3.9 </td>
-            </tr>
-            <tr class="67-71">
-                <td> 67-71 </td>
-                <td> 4.7 </td>
-                <td> 4.4 </td>
-                <td> 4.3 </td>
-                <td> 4.2 </td>
-                <td> 4.1 </td>
-                <td> 3.9 </td>
-            </tr>
-            <tr class="72-75">
-                <td> 72-75 </td>
-                <td> 4.8 </td>
-                <td> 4.6 </td>
-                <td> 4.4 </td>
-                <td> 4.2 </td>
-                <td> 4.2 </td>
-                <td> 4.1</td>
-            </tr>
-            <tr class="76-79">
-                <td> 76-79 </td>
-                <td> 4.9 </td>
-                <td> 4.6 </td>
-                <td> 4.5 </td>
-                <td> 4.3 </td>
-                <td> 4.3 </td>
-                <td> 4.2 </td>
-            </tr>
-            <tr class="80-83">
-                <td> 80-83 </td>
-                <td> 5.0 </td>
-                <td> 4.8 </td>
-                <td> 4.6 </td>
-                <td> 4.4 </td>
-                <td> 4.3 </td>
-                <td> 4.2 </td>
-            </tr>
-            <tr class="84-87">
-                <td> 84-87 </td>
-                <td> 5.1 </td>
-                <td> 4.8 </td>
-                <td> 4.6 </td>
-                <td> 4.5 </td>
-                <td> 4.4 </td>
-                <td> 4.3 </td>
-            </tr>
-            <tr class="88-92">
-                <td> 88-92 </td>
-                <td> 5.2 </td>
-                <td> 4.9 </td>
-                <td> 4.7 </td>
-                <td> 4.6 </td>
-                <td> 4.4 </td>
-                <td> 4.3 </td>
-            </tr>
-            <tr class="93-96">
-                <td> 93-96 </td>
-                <td> 5.3 </td>
-                <td> 5.0 </td>
-                <td> 4.8 </td>
-                <td> 4.7 </td>
-                <td> 4.5 </td>
-                <td> 4.4 </td>
-            </tr>
-            <tr class="97-100">
-                <td> 97-100 </td>
-                <td> 5.4 </td>
-                <td> 5.1 </td>
-                <td> 4.8 </td>
-                <td> 4.7 </td>
-                <td> 4.5 </td>
-                <td> 4.3 </td>
-            </tr>
-            <tr class="106-110">
-                <td> 106-110 </td>
-                <td> 5.6 </td>
-                <td> 5.3 </td>
-                <td> 5.0 </td>
-                <td> 4.8 </td>
-                <td> 4.6 </td>
-                <td> 4.5 </td>
-            </tr>
-            <tr class="111-115">
-                <td> 111-115 </td>
-                <td> 5.7 </td>
-                <td> 5.4 </td>
-                <td> 5.1 </td>
-                <td> 4.9 </td>
-                <td> 4.7 </td>
-                <td> 4.5 </td>
-            </tr>
-            <tr class="116-120">
-                <td> 116-120 </td>
-                <td> 5.8 </td>
-                <td> 5.5 </td>
-                <td> 5.2 </td>
-                <td> 5.0 </td>
-                <td> 4.8 </td>
-                <td> 4.6 </td>
-            </tr>
-            <tr class="121-126">
-                <td> 121-126 </td>
-                <td> 6.0 </td>
-                <td> 5.5 </td>
-                <td> 5.3 </td>
-                <td> 5.0 </td>
-                <td> 4.8 </td>
-                <td> 4.6 </td>
-            </tr>
-            <tr class="127-132">
-                <td> 127-132 </td>
-                <td> 6.1 </td>
-                <td> 5.7 </td>
-                <td> 5.3 </td>
-                <td> 5.1 </td>
-                <td> 4.9 </td>
-                <td> 4.7 </td>
-            </tr>
-            <tr class="133-138">
-                <td> 133-138 </td>
-                <td> 6.2 </td>
-                <td> 5.8 </td>
-                <td> 5.4 </td>
-                <td> 5.2 </td>
-                <td> 5.0 </td>
-                <td> 4.7 </td>
-            </tr>
-            <tr class="139-146">
-                <td> 139-146 </td>
-                <td> 6.3 </td>
-                <td> 5.9 </td>
-                <td> 5.6 </td>
-                <td> 5.3 </td>
-                <td> 5.0 </td>
-                <td> 4.8 </td>
-            </tr>
-            <tr class="147-154">
-                <td> 147-154 </td>
-                <td> 6.5 </td>
-                <td> 6.0 </td>
-                <td> 5.7 </td>
-                <td> 5.4 </td>
-                <td> 5.1 </td>
-                <td> 4.8 </td>
-            </tr>
-            <tr class="155-163">
-                <td> 155-163 </td>
-                <td> 6.7 </td>
-                <td> 6.2 </td>
-                <td> 5.8 </td>
-                <td> 5.4 </td>
-                <td> 5.2 </td>
-                <td> 4.9 </td>
-            </tr>
-            <tr class="164-173">
-                <td> 164-173 </td>
-                <td> 6.8 </td>
-                <td> 6.3 </td>
-                <td> 5.9 </td>
-                <td> 5.5 </td>
-                <td> 5.3 </td>
-                <td> 5.0 </td>
-            </tr>
-            <tr class="174-185">
-                <td> 174-185 </td>
-                <td> 7.0 </td>
-                <td> 6.5 </td>
-                <td> 6.0 </td>
-                <td> 5.7 </td>
-                <td> 5.4 </td>
-                <td> 5.1 </td>
-            </tr>
-            <tr class="186-201">
-                <td> 186-201 </td>
-                <td> 7.3 </td>
-                <td> 6.7 </td>
-                <td> 6.2 </td>
-                <td> 5.8 </td>
-                <td> 5.5 </td>
-                <td> 5.2 </td>
-            </tr>
-            <tr class="202-220">
-                <td> 202-220 </td>
-                <td> 7.6 </td>
-                <td> 6.9 </td>
-                <td> 6.4 </td>
-                <td> 6.0 </td>
-                <td> 5.6 </td>
-                <td> 5.3 </td>
-            </tr>
-            <tr class="221-247">
-                <td> 221-247 </td>
-                <td> 8.0 </td>
-                <td> 7.2 </td>
-                <td> 6.6 </td>
-                <td> 6.2 </td>
-                <td> 5.9 </td>
-                <td> 5.4 </td>
-            </tr>
-            <tr class="248-292">
-                <td> 248-292 </td>
-                <td> 8.5 </td>
-                <td> 7.6 </td>
-                <td> 7.0 </td>
-                <td> 6.5 </td>
-                <td> 6.1 </td>
-                <td> 5.6 </td>
-            </tr>
-            <tr class="293-399">
-                <td> 293-399 </td>
-                <td> 9.5 </td>
-                <td> 8.3 </td>
-                <td> 7.5 </td>
-                <td> 7.0 </td>
-                <td> 6.5 </td>
-                <td> 5.9 </td>
-            </tr>
-            <tr class="400-13975">
-                <td> 400-13975 </td>
-                <td> 11.9 </td>
-                <td> 10.0 </td>
-                <td> 8.8 </td>
-                <td> 8.1 </td>
-                <td> 7.5 </td>
-                <td> 6.7 </td>
-            </tr>
-        </table>
         <div class="linha"></div>
-        <p> Referência: Martin SS, Blaha MJ, Elshazly MB, et al. "Comparison of a novel method vs the Friedewald
-            equation for estimating low-density lipoprotein cholesterol levels from the standard lipid profile." JAMA,
-            2013.</p>
+        <h1>
+            🧮 Sobre o cálculo
+        </h1>
+        <p class="desc">
+            A calculadora utiliza o método de Martin/Hopkins para o cálculo do colesterol LDL. Diferentemente da fórmula
+            de Friedewald, que utiliza um divisor fixo de 5 para estimar o VLDL, o método de Martin/Hopkins utiliza um
+            fator ajustável de TG:VLDL-C, selecionado de acordo com as faixas de triglicerídeos e colesterol não-HDL.
+            Neste projeto, a tabela é composta por 30 faixas de triglicerídeos e 6 faixas de não-HDL, totalizando 180
+            combinações possíveis. A partir dos valores informados, o sistema identifica automaticamente a faixa
+            correspondente, seleciona o fator e realiza os cálculos.
+        </p>
+        <h3>Fórmulas utilizadas</h3>
+        <p class="descfor">
+            Não-HDL = Colesterol Total − HDL <br>
 
-    </section>
+            VLDL = Triglicerídeos ÷ Fator <br>
+
+            LDL = Não-HDL − VLDL
+        </p>
+        <p class="desc">
+            O <strong>fator ajustável</strong> é definido pelo cruzamento entre a faixa de triglicerídeos
+            e a faixa de colesterol não-HDL na tabela de Martin/Hopkins.
+        </p>
+
+        <h3> Referência</h3>
+        <p class="desc">Martin SS, Blaha MJ, Elshazly MB, et al. Comparison of a Novel Method vs the Friedewald Equation for
+            Estimating Low-Density Lipoprotein Cholesterol Levels From the Standard Lipid Profile. JAMA.
+            2013;310(19):2061–2068.</p>
+        <p class="desc"><strong>Nota: Os resultados devem ser interpretados considerando o contexto clínico e a estratificação do
+                risco cardiovascular. <br>  A aplicação possui finalidade educacional e não substitui avaliação profissional.
+            </strong></p>
+
+
+        <h1>Fatores baseados em triglicerídeos e colesterol não-HDL</h1>
+
+        <p class="desc"> A tabela utilizada na calculadora é baseada no método de Martin/Hopkins, uma alternativa à
+            fórmula de
+            Friedewald para estimar o colesterol LDL. <br>
+
+            Na fórmula tradicional de Friedewald, o VLDL é calculado dividindo os triglicerídeos por um valor fixo
+            (5), o que gera erros maiores em pacientes com triglicerídeos elevados. O método de Martin resolve isso
+            substituindo esse valor fixo por um fator ajustável, que varia de acordo com a combinação entre a faixa
+            de triglicerídeos e a faixa de colesterol não-HDL do paciente. <br>
+
+            A tabela usada neste projeto tem 180 combinações possíveis (linhas de triglicerídeos x colunas de
+            não-HDL), com o fator correto para cada faixa. Esse fator é usado para calcular o VLDL (triglicerídeos
+            dividido pelo fator), e o LDL é obtido subtraindo esse VLDL do colesterol não-HDL.</p>
+
+        <section class="table">
+            <table>
+                <tr>
+                    <td rowspan="2">Triglicerídeos</td>
+                    <td colspan="6">Colesterol Não-HDL em mg/dL</td>
+                </tr>
+                <tr>
+                    <td> ≤100 </td>
+                    <td> 100-129 </td>
+                    <td> 130-159 </td>
+                    <td> 160-189 </td>
+                    <td> 190-219 </td>
+                    <td> ≥220 </td>
+                </tr>
+
+                <tr class="7-49">
+                    <td> 7-49 </td>
+                    <td> 3.5 </td>
+                    <td> 3.4 </td>
+                    <td> 3.3 </td>
+                    <td> 3.3 </td>
+                    <td> 3.2 </td>
+                    <td> 3.1 </td>
+                </tr>
+                <tr class="50-56">
+                    <td> 50-56 </td>
+                    <td> 4.0 </td>
+                    <td> 3.9 </td>
+                    <td> 3.7 </td>
+                    <td> 3.6 </td>
+                    <td> 3.6 </td>
+                    <td> 3.4 </td>
+                </tr>
+                <tr class="57-61">
+                    <td> 57-61 </td>
+                    <td> 4.3 </td>
+                    <td> 4.1 </td>
+                    <td> 4.0 </td>
+                    <td> 3.9 </td>
+                    <td> 3.8 </td>
+                    <td> 3.6 </td>
+                </tr>
+                <tr class="62-66">
+                    <td> 62-66 </td>
+                    <td> 4.5 </td>
+                    <td> 4.3 </td>
+                    <td> 4.1 </td>
+                    <td> 4.0 </td>
+                    <td> 3.9 </td>
+                    <td> 3.9 </td>
+                </tr>
+                <tr class="67-71">
+                    <td> 67-71 </td>
+                    <td> 4.7 </td>
+                    <td> 4.4 </td>
+                    <td> 4.3 </td>
+                    <td> 4.2 </td>
+                    <td> 4.1 </td>
+                    <td> 3.9 </td>
+                </tr>
+                <tr class="72-75">
+                    <td> 72-75 </td>
+                    <td> 4.8 </td>
+                    <td> 4.6 </td>
+                    <td> 4.4 </td>
+                    <td> 4.2 </td>
+                    <td> 4.2 </td>
+                    <td> 4.1</td>
+                </tr>
+                <tr class="76-79">
+                    <td> 76-79 </td>
+                    <td> 4.9 </td>
+                    <td> 4.6 </td>
+                    <td> 4.5 </td>
+                    <td> 4.3 </td>
+                    <td> 4.3 </td>
+                    <td> 4.2 </td>
+                </tr>
+                <tr class="80-83">
+                    <td> 80-83 </td>
+                    <td> 5.0 </td>
+                    <td> 4.8 </td>
+                    <td> 4.6 </td>
+                    <td> 4.4 </td>
+                    <td> 4.3 </td>
+                    <td> 4.2 </td>
+                </tr>
+                <tr class="84-87">
+                    <td> 84-87 </td>
+                    <td> 5.1 </td>
+                    <td> 4.8 </td>
+                    <td> 4.6 </td>
+                    <td> 4.5 </td>
+                    <td> 4.4 </td>
+                    <td> 4.3 </td>
+                </tr>
+                <tr class="88-92">
+                    <td> 88-92 </td>
+                    <td> 5.2 </td>
+                    <td> 4.9 </td>
+                    <td> 4.7 </td>
+                    <td> 4.6 </td>
+                    <td> 4.4 </td>
+                    <td> 4.3 </td>
+                </tr>
+                <tr class="93-96">
+                    <td> 93-96 </td>
+                    <td> 5.3 </td>
+                    <td> 5.0 </td>
+                    <td> 4.8 </td>
+                    <td> 4.7 </td>
+                    <td> 4.5 </td>
+                    <td> 4.4 </td>
+                </tr>
+                <tr class="97-100">
+                    <td> 97-100 </td>
+                    <td> 5.4 </td>
+                    <td> 5.1 </td>
+                    <td> 4.8 </td>
+                    <td> 4.7 </td>
+                    <td> 4.5 </td>
+                    <td> 4.3 </td>
+                </tr>
+                <tr class="101-105">
+                    <td> 101-105 </td>
+                    <td> 5.5 </td>
+                    <td> 5.2 </td>
+                    <td> 5.0 </td>
+                    <td> 4.7 </td>
+                    <td> 4.6 </td>
+                    <td> 4.5 </td>
+
+                </tr>
+                <tr class="106-110">
+                    <td> 106-110 </td>
+                    <td> 5.6 </td>
+                    <td> 5.3 </td>
+                    <td> 5.0 </td>
+                    <td> 4.8 </td>
+                    <td> 4.6 </td>
+                    <td> 4.5 </td>
+                </tr>
+                <tr class="111-115">
+                    <td> 111-115 </td>
+                    <td> 5.7 </td>
+                    <td> 5.4 </td>
+                    <td> 5.1 </td>
+                    <td> 4.9 </td>
+                    <td> 4.7 </td>
+                    <td> 4.5 </td>
+                </tr>
+                <tr class="116-120">
+                    <td> 116-120 </td>
+                    <td> 5.8 </td>
+                    <td> 5.5 </td>
+                    <td> 5.2 </td>
+                    <td> 5.0 </td>
+                    <td> 4.8 </td>
+                    <td> 4.6 </td>
+                </tr>
+                <tr class="121-126">
+                    <td> 121-126 </td>
+                    <td> 6.0 </td>
+                    <td> 5.5 </td>
+                    <td> 5.3 </td>
+                    <td> 5.0 </td>
+                    <td> 4.8 </td>
+                    <td> 4.6 </td>
+                </tr>
+                <tr class="127-132">
+                    <td> 127-132 </td>
+                    <td> 6.1 </td>
+                    <td> 5.7 </td>
+                    <td> 5.3 </td>
+                    <td> 5.1 </td>
+                    <td> 4.9 </td>
+                    <td> 4.7 </td>
+                </tr>
+                <tr class="133-138">
+                    <td> 133-138 </td>
+                    <td> 6.2 </td>
+                    <td> 5.8 </td>
+                    <td> 5.4 </td>
+                    <td> 5.2 </td>
+                    <td> 5.0 </td>
+                    <td> 4.7 </td>
+                </tr>
+                <tr class="139-146">
+                    <td> 139-146 </td>
+                    <td> 6.3 </td>
+                    <td> 5.9 </td>
+                    <td> 5.6 </td>
+                    <td> 5.3 </td>
+                    <td> 5.0 </td>
+                    <td> 4.8 </td>
+                </tr>
+                <tr class="147-154">
+                    <td> 147-154 </td>
+                    <td> 6.5 </td>
+                    <td> 6.0 </td>
+                    <td> 5.7 </td>
+                    <td> 5.4 </td>
+                    <td> 5.1 </td>
+                    <td> 4.8 </td>
+                </tr>
+                <tr class="155-163">
+                    <td> 155-163 </td>
+                    <td> 6.7 </td>
+                    <td> 6.2 </td>
+                    <td> 5.8 </td>
+                    <td> 5.4 </td>
+                    <td> 5.2 </td>
+                    <td> 4.9 </td>
+                </tr>
+                <tr class="164-173">
+                    <td> 164-173 </td>
+                    <td> 6.8 </td>
+                    <td> 6.3 </td>
+                    <td> 5.9 </td>
+                    <td> 5.5 </td>
+                    <td> 5.3 </td>
+                    <td> 5.0 </td>
+                </tr>
+                <tr class="174-185">
+                    <td> 174-185 </td>
+                    <td> 7.0 </td>
+                    <td> 6.5 </td>
+                    <td> 6.0 </td>
+                    <td> 5.7 </td>
+                    <td> 5.4 </td>
+                    <td> 5.1 </td>
+                </tr>
+                <tr class="186-201">
+                    <td> 186-201 </td>
+                    <td> 7.3 </td>
+                    <td> 6.7 </td>
+                    <td> 6.2 </td>
+                    <td> 5.8 </td>
+                    <td> 5.5 </td>
+                    <td> 5.2 </td>
+                </tr>
+                <tr class="202-220">
+                    <td> 202-220 </td>
+                    <td> 7.6 </td>
+                    <td> 6.9 </td>
+                    <td> 6.4 </td>
+                    <td> 6.0 </td>
+                    <td> 5.6 </td>
+                    <td> 5.3 </td>
+                </tr>
+                <tr class="221-247">
+                    <td> 221-247 </td>
+                    <td> 8.0 </td>
+                    <td> 7.2 </td>
+                    <td> 6.6 </td>
+                    <td> 6.2 </td>
+                    <td> 5.9 </td>
+                    <td> 5.4 </td>
+                </tr>
+                <tr class="248-292">
+                    <td> 248-292 </td>
+                    <td> 8.5 </td>
+                    <td> 7.6 </td>
+                    <td> 7.0 </td>
+                    <td> 6.5 </td>
+                    <td> 6.1 </td>
+                    <td> 5.6 </td>
+                </tr>
+                <tr class="293-399">
+                    <td> 293-399 </td>
+                    <td> 9.5 </td>
+                    <td> 8.3 </td>
+                    <td> 7.5 </td>
+                    <td> 7.0 </td>
+                    <td> 6.5 </td>
+                    <td> 5.9 </td>
+                </tr>
+                <tr class="400-13975">
+                    <td> 400-13975 </td>
+                    <td> 11.9 </td>
+                    <td> 10.0 </td>
+                    <td> 8.8 </td>
+                    <td> 8.1 </td>
+                    <td> 7.5 </td>
+                    <td> 6.7 </td>
+                </tr>
+            </table>
+
+            <p>Referência: Martin SS, Blaha MJ, Elshazly MB, et al. "Comparison of a novel method vs the Friedewald
+                equation for estimating low-density lipoprotein cholesterol levels from the standard lipid profile."
+                JAMA, 2013.</p>
+        </section>
+    </main>
+
     <footer>
         <p>Daywison Santos</p>
         <p>Biomédico — CRBM 6500</p>
         <p>&copy; 2026 Calculadora VLDL. Todos os direitos reservados.</p>
     </footer>
+
     <script src="script.js"></script>
 
 </body>
